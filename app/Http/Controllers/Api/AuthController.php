@@ -43,7 +43,7 @@ class AuthController extends Controller
 
             $response['success'] = true;
 
-            $response['message'] = 'Register sukses';
+            $response['message'] = 'Register Successfully';
 
             return response()->json($response, 200);            
 
@@ -78,7 +78,7 @@ class AuthController extends Controller
 
                 $response['success'] = false;
 
-                $response['message'] = 'Email atau password salah';
+                $response['message'] = 'Your Email or password is wrong';
 
                 return response()->json($response, 200);
 
@@ -88,9 +88,9 @@ class AuthController extends Controller
 
             $response['success'] = true;
 
-            $response['message'] = 'Login sukses';
+            $response['message'] = 'Login successfully';
 
-            $response['token'] = $token;
+            $response['data']['token'] = $token;
 
             return response()->json($response, 200);
 

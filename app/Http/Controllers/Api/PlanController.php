@@ -17,7 +17,7 @@ class PlanController extends Controller
     {
         try {
 
-            $user_id = Auth::user()->id;
+            // $user_id = Auth::user()->id;
 
 
         } catch (\Exception $e) {
