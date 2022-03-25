@@ -34,7 +34,7 @@ Route::prefix('user')->group(function () {
 
     Route::get('/plan/{id}', [PlanController::class, 'show']);
 
-    Route::put('/plan/{id}', [PlanController::class, 'edit']);
+    Route::put('/plan/{id}', [PlanController::class, 'update']);
 
     Route::post('/plan', [PlanController::class, 'store']);
 

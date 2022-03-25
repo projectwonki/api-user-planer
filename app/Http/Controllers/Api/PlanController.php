@@ -101,9 +101,40 @@ class PlanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PlanRequest $request, $id)
     {
-        //
+        try {
+
+            $update_plan = Plan::find($id);
+
+            if ($update_plan === null) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Plan is not found',
+                ], 400);
+            }
+
+            $update_plan->user_id = 0;
+            $update_plan->title = $request->title;
+            $update_plan->origin = $request->origin;
+            $update_plan->destination = $request->destination;
+            $update_plan->type = $request->type;
+            $update_plan->start_date = $request->start_date;
+            $update_plan->end_date = $request->end_date;
+            $update_plan->description = $request->description;
+            $update_plan->updated_at = date('Y-m-d');
+            $update_plan->save();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Update plan successfuly',
+            ], 200);
+
+        } catch (\Exception $e) {
+
+            return response()->json($e->getMessage(), 400);
+
+        }
     }
 
     /**
@@ -114,6 +145,28 @@ class PlanController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+
+            $get_plan = Plan::find($id);
+            
+            if ($get_plan === null) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Plan is not found',
+                ], 400);
+            }
+
+            $get_plan->delete();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Delete plan successfuly',
+            ], 200);
+
+        } catch (\Exception $e) {
+
+            return response()->json($e->getMessage(), 400);
+
+        }
     }
 }
