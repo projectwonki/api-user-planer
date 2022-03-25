@@ -8,6 +8,32 @@ use Tests\TestCase;
 
 class AuthenticationTest extends TestCase
 {
+    public function testRegisterMustEnterEmailAndPassword()
+    {
+        $this->json('POST', 'api/auth/register')
+            ->assertStatus(422)
+            ->assertJson([
+                "message" => "The given data was invalid.",
+                "errors" => [
+                    'name' => ["The name field is required."],
+                    'email' => ["The email field is required."],
+                    'password' => ["The password field is required."],
+                ]
+            ]);
+    }
+
+    public function testRegisterSuccessfull()
+    {
+        $loginData = ['name' => 'user4', 'email' => 'user4@gmail.com', 'password' => 'password4'];
+
+        $this->json('POST', 'api/auth/register', $loginData, ['Accept' => 'application/json'])
+            ->assertStatus(200)
+            ->assertJson([
+                "success" => true,
+                "message" => "Register Successfully",
+            ]);
+    }
+
     /**
      * A basic feature test example.
      *

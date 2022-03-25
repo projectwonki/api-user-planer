@@ -23,7 +23,7 @@ class AuthController extends Controller
     {
         try {
 
-            $attr = $request->validate([
+            $validator = Validator::make($request->all(), [
 
                 'name' => 'required|string',
                 
@@ -32,6 +32,12 @@ class AuthController extends Controller
                 'password' => 'required|string|min:6'
 
             ]);
+
+            if ($validator->fails()) {
+
+                return response()->json(['message' => 'The given data was invalid.', 'errors' => $validator->errors()], 422);
+
+            }
 
             User::create([
 
