@@ -30,7 +30,7 @@ Route::prefix('auth')->group(function () {
 
 Route::prefix('user')->group(function () {
 
-    Route::get('/plan', [PlanController::class, 'index'])->middleware('auth:api');
+    Route::get('/plan', [PlanController::class, 'index']);
 
     Route::get('/plan/{id}', [PlanController::class, 'show']);
 

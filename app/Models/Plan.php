@@ -11,6 +11,17 @@ class Plan extends Model
 
     protected $table = 'plans';
 
+    protected $fillable = [
+        'user_id',
+        // 'title',
+        // 'origin',
+        // 'destination',
+        // 'type',
+        // 'start_date',
+        // 'end_date',
+        // 'description',
+    ];
+
     public function user()
     {
         return $this->belongsTo('App\Models\User', 'user_id');
