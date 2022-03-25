@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Auth;
 
 class PlanController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:api', ['except' => ['login', 'register']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -19,7 +23,7 @@ class PlanController extends Controller
     {
         try {
 
-            $arr_plan = Plan::orderBy('created_at','desc')->get()->toArray();
+            $arr_plan = Plan::whereUserId(auth('api')->user()->id)->orderBy('created_at','desc')->get()->toArray();
 
             return response()->json([
                 'success' => true,
