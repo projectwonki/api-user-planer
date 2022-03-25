@@ -12,7 +12,7 @@ class PlanController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login', 'register']]);
+        $this->middleware('auth:api');
     }
     /**
      * Display a listing of the resource.
@@ -50,7 +50,7 @@ class PlanController extends Controller
 
             $new_plan = new Plan;
 
-            $new_plan->user_id = 0;
+            $new_plan->user_id = auth('api')->user()->id;
             $new_plan->title = $request->title;
             $new_plan->origin = $request->origin;
             $new_plan->destination = $request->destination;
@@ -83,7 +83,14 @@ class PlanController extends Controller
     {
         try {
 
-            $plan_detail = Plan::find($id)->toArray();
+            $plan_detail = Plan::whereId($id)->whereUserId(auth('api')->user()->id)->first();
+
+            if ($plan_detail === null) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'plan detail not found'
+                ], 200);
+            }
 
             return response()->json([
                 'success' => true,
@@ -109,7 +116,7 @@ class PlanController extends Controller
     {
         try {
 
-            $update_plan = Plan::find($id);
+            $update_plan = Plan::whereId($id)->whereUserId(auth('api')->user()->id)->first();
 
             if ($update_plan === null) {
                 return response()->json([
@@ -118,7 +125,7 @@ class PlanController extends Controller
                 ], 400);
             }
 
-            $update_plan->user_id = 0;
+            $update_plan->user_id = auth('api')->user()->id;
             $update_plan->title = $request->title;
             $update_plan->origin = $request->origin;
             $update_plan->destination = $request->destination;
@@ -151,7 +158,7 @@ class PlanController extends Controller
     {
         try {
 
-            $get_plan = Plan::find($id);
+            $get_plan = Plan::whereId($id)->whereUserId(auth('api')->user()->id)->first();
             
             if ($get_plan === null) {
                 return response()->json([

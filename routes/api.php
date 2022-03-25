@@ -26,21 +26,20 @@ Route::prefix('auth')->group(function () {
     
     Route::post('login', [AuthController::class, 'login']);
 
+    Route::get('logout', [AuthController::class, 'logout']);
+
 });
 
-Route::group([
-    'middleware' => 'api',
-    'prefix' => 'user'
-], function ($router) {
+Route::group(['middleware' => 'api', 'prefix' => 'user'], function ($router) {
 
-        Route::get('/plan', [PlanController::class, 'index']);
+    Route::get('/plan', [PlanController::class, 'index']);
 
-        Route::get('/plan/{id}', [PlanController::class, 'show']);
+    Route::get('/plan/{id}', [PlanController::class, 'show']);
 
-        Route::put('/plan/{id}', [PlanController::class, 'update']);
+    Route::put('/plan/{id}', [PlanController::class, 'update']);
 
-        Route::post('/plan', [PlanController::class, 'store']);
+    Route::post('/plan', [PlanController::class, 'store']);
 
-        Route::delete('/plan/{id}', [PlanController::class, 'destroy']);
+    Route::delete('/plan/{id}', [PlanController::class, 'destroy']);
 
 });
