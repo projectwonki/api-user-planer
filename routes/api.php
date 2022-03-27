@@ -20,6 +20,10 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
+Route::get('api-test', function(){
+    return 'api-testing';
+});
+
 Route::prefix('auth')->group(function () {
 
     Route::post('register', [AuthController::class, 'register']);
