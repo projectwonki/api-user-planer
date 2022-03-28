@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Plan;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -11,6 +12,9 @@ class UserPlanTest extends TestCase
 {
     public function testUserPlanListingWithoutAuthorization()
     {
+        //truncate data user
+        $truncate_user_plan = Plan::truncate();
+
         $this->json('GET', 'api/user/plan')
             ->assertStatus(401);
     }
@@ -81,13 +85,13 @@ class UserPlanTest extends TestCase
         }
 
         $params = [
-            'title' => 'testing Plan 2', 
+            'title' => 'testing Plan 1', 
             'origin' => 'Medan', 
             'destination' => 'Solo', 
             'type' => 'one-day', 
             'start_date' => '2022-04-02', 
             'end_date' => '2022-04-03', 
-            'description' => 'testing create Plan 2', 
+            'description' => 'testing create Plan 1', 
         ];
 
         $this->json('POST', 'api/user/plan', $params, $headers)->assertStatus(200);
@@ -123,12 +127,12 @@ class UserPlanTest extends TestCase
             'description' => 'testing update Plan 1', 
         ];
 
-        $this->putJson('api/user/plan/7', $params, $headers)->assertStatus(200);
+        $this->putJson('api/user/plan/1', $params, $headers)->assertStatus(200);
     }
 
     public function testUserPlanDeleteWithoutAuthorization()
     {
-        $this->json('DELETE', 'api/user/plan/8')
+        $this->json('DELETE', 'api/user/plan/1')
             ->assertStatus(401);
     }
 
@@ -148,6 +152,6 @@ class UserPlanTest extends TestCase
 
         $params = [];
 
-        $this->deleteJson('api/user/plan/8', $params, $headers)->assertStatus(200);
+        $this->deleteJson('api/user/plan/1', $params, $headers)->assertStatus(200);
     }
 }
