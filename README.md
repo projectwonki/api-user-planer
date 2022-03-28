@@ -1,3 +1,11 @@
+# About Requirement
+
+i use the requirements :
+
+PHP: php7.4
+Laravel: v8.75
+auth library: Laravel JWT by Tymon
+
 ## About API
 
 I build simple RESTFULL API for Users who want to make list for their plan trip. this API include User Authentication using Json Web Token (JWT) and also with some input validation. I write some simple test for these API too (you can read more details about testing at below section). The endpoints as follows:
