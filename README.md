@@ -22,6 +22,8 @@ User Plan:
 - [PUT] Update Plan /api/user/plan/1.
 - [DELETE] Delete Plan /api/user/plan/1.
 
+I use cache to store user plan data list at endpoint User Plan. the cache will improve the performance to show the API response as long as there is no new data. when there is a new data, cache will be forget and the result will show a new one.
+
 if you want to test this API in your local. please follow these steps :
 
 1. git clone https://github.com/projectwonki/api-user-planer.git

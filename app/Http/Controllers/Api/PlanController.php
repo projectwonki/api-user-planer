@@ -7,6 +7,7 @@ use App\Http\Requests\PlanRequest;
 use App\Models\Plan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 
 class PlanController extends Controller
 {
@@ -23,13 +24,25 @@ class PlanController extends Controller
     {
         try {
 
+            // dd(Cache::get('user_plan_list'));
+
+            if (Cache::has('user_plan_list')){
+
+                return Cache::get('user_plan_list');
+
+            }
+
             $arr_plan = Plan::whereUserId(auth('api')->user()->id)->orderBy('created_at','desc')->get()->toArray();
 
-            return response()->json([
+            $response = response()->json([
                 'success' => true,
                 'message' => 'success get all plan list. total row: ' . count($arr_plan),
                 'data' => $arr_plan,
             ], 200);
+
+            Cache::put('user_plan_list', $response);
+
+            return $response;
 
         } catch (\Exception $e) {
 
@@ -78,6 +91,8 @@ class PlanController extends Controller
             $new_plan->created_at = date('Y-m-d');
             $new_plan->save();
 
+            Cache::forget('user_plan_list');
+
             return response()->json([
                 'success' => true,
                 'message' => 'Store plan successfuly',
@@ -109,6 +124,8 @@ class PlanController extends Controller
                     'data' => array(),
                 ], 200);
             }
+
+            Cache::forget('user_plan_list');
 
             return response()->json([
                 'success' => true,
@@ -171,6 +188,8 @@ class PlanController extends Controller
             $update_plan->updated_at = date('Y-m-d');
             $update_plan->save();
 
+            Cache::forget('user_plan_list');
+
             return response()->json([
                 'success' => true,
                 'message' => 'Update plan successfuly',
@@ -203,6 +222,8 @@ class PlanController extends Controller
             }
 
             $get_plan->delete();
+
+            Cache::forget('user_plan_list');
 
             return response()->json([
                 'success' => true,
