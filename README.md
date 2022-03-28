@@ -25,13 +25,14 @@ User Plan:
 if you want to test this API in your local. please follow these steps :
 
 1. git clone https://github.com/projectwonki/api-user-planer.git
-2. cd {your target repo path}
-3. run composer install
-4. run cp .env.example .env
-5. setup your .env
-6. run php artisan migrate
-7. run php artisan jwt:secret
-8. done
+2. input your github username & password (if success, continue to step 3, if failed, back to step 2)
+3. cd {your target repo path}
+4. run composer install
+5. run cp .env.example .env
+6. setup your .env
+7. run php artisan migrate
+8. run php artisan jwt:secret
+9. done
 
 I provide Postman Collection that you can find at path folder /tests.
 
