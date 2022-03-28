@@ -1,64 +1,55 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+## About API
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+I build simple RESTFULL API for Users who want to make list for their plan trip. this API include User Authentication using Json Web Token (JWT) and also with some input validation. I write some simple test for these API too (you can read more details about testing at below section). The endpoints as follows:
 
-## About Laravel
+Authentication:
+- [POST] Register /api/auth/register.
+- [POST] Login /api/auth/login.
+- [POST] Logout /api/auth/logout.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+User Plan:
+- [GET] User Plan /api/user/plan.
+- [GET] User Plan Detail /api/user/plan/1.
+- [POST] Create Plan /api/user/plan.
+- [PUT] Update Plan /api/user/plan/1.
+- [DELETE] Delete Plan /api/user/plan/1.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+if you want to test this API in your local. please follow these steps :
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+1. git clone https://github.com/projectwonki/api-user-planer.git
+2. cd {your target repo path}
+3. run composer install
+4. run cp .env.example .env
+5. setup your .env
+6. run php artisan migrate
+7. run php artisan jwt:secret
+8. done
 
-## Learning Laravel
+I provide Postman Collection that you can find at path folder /test.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+I also provide Public IP URL (i deployed this API in my public VPS). So, you can check and test it with postman collection without testing in your local. you just only change {{trutrip_domain}} at every endpoints with this :
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Public IP URL : 103.174.115.179/index.php
+for example : 103.174.115.179/index.php/api/auth/register
 
-## Laravel Sponsors
+or, you can register the Public IP URL at Postman Global Environment using this setup :
+VARIABLE: {trutrip_domain}}
+INITIAL VALUE: 103.174.115.179/index.php
+CURRENT VALUE: 103.174.115.179/index.php
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+before test, please make sure the Public IP URL registered in Global Environment at Postman.
 
-### Premium Partners
+for the Publis IP URL itself, i don't have some domain for make it easy to remember and i do not setup some secure HTTPS because the limitation of time.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+i think with User Authentication (using JWT) and some validation is quitely enough to make data more secure.
 
-## Contributing
+## About Testing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+i created some simple test for User Authentication and also for User Plan. to run the test in your local. please follow these steps:
 
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+1. run cp .env .env.testing
+2. before you setup the database at .env.testing, please create some database for testing with same data from the origin database
+3. setup database connection at .env.testing (make sure that this testing connection is match with your testing database)
+4. run php artisan --env=testing migrate
+5. run php artisan --env=testing jwt:secret
+2. run composer test
