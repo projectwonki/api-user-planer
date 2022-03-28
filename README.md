@@ -29,8 +29,8 @@ I provide Postman Collection that you can find at path folder /test.
 
 I also provide Public IP URL (i deployed this API in my public VPS). So, you can check and test it with postman collection without testing in your local. you just only change {{trutrip_domain}} at every endpoints with this :
 
-Public IP URL : 103.174.115.179/index.php
-for example : 103.174.115.179/index.php/api/auth/register
+Public IP URL : http://103.174.115.179/index.php
+for example : http://103.174.115.179/index.php/api/auth/register
 
 or, you can register the Public IP URL at Postman Global Environment using this setup :
 VARIABLE: {trutrip_domain}}
