@@ -24,7 +24,7 @@ class AuthenticationTest extends TestCase
 
     public function testRegisterSuccessfull()
     {
-        $loginData = ['name' => 'user4', 'email' => 'user4@gmail.com', 'password' => 'password4'];
+        $loginData = ['name' => 'user5', 'email' => 'user5@gmail.com', 'password' => 'password5'];
 
         $this->json('POST', 'api/auth/register', $loginData, ['Accept' => 'application/json'])
             ->assertStatus(200)
@@ -54,7 +54,7 @@ class AuthenticationTest extends TestCase
 
     public function testLoginSuccessfull()
     {
-        $loginData = ['email' => 'user1@gmail.com', 'password' => 'password'];
+        $loginData = ['email' => 'user1@gmail.com', 'password' => 'password1'];
 
         $this->json('POST', 'api/auth/login', $loginData, ['Accept' => 'application/json'])
             ->assertStatus(200)
@@ -77,7 +77,7 @@ class AuthenticationTest extends TestCase
 
     public function testLoginFailed()
     {
-        $loginData = ['email' => 'user1@gmail.com', 'password' => 'password1'];
+        $loginData = ['email' => 'user1@gmail.com', 'password' => 'password'];
 
         $this->json('POST', 'api/auth/login', $loginData, ['Accept' => 'application/json'])
             ->assertStatus(401)
