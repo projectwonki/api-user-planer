@@ -39,7 +39,7 @@ Route::prefix('auth')->group(function () {
     
     Route::post('login', [AuthController::class, 'login'])->name('post.login');
 
-    Route::get('logout', [AuthController::class, 'logout']);
+    Route::post('logout', [AuthController::class, 'logout']);
 
 });
 
