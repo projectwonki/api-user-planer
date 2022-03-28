@@ -28,13 +28,22 @@ Route::prefix('auth')->group(function () {
 
     Route::post('register', [AuthController::class, 'register']);
     
-    Route::post('login', [AuthController::class, 'login']);
+    Route::get('unauthorized', function(){
+
+        return response()->json([
+            'success' => false,
+            'message' => 'the request is unauthorized. please login',
+        ], 401);
+
+    })->name('unauthorized');
+    
+    Route::post('login', [AuthController::class, 'login'])->name('post.login');
 
     Route::get('logout', [AuthController::class, 'logout']);
 
 });
 
-Route::group(['middleware' => 'api', 'prefix' => 'user'], function ($router) {
+Route::group(['middleware' => 'auth:api', 'prefix' => 'user'], function ($router) {
 
     Route::get('/plan', [PlanController::class, 'index']);
 
