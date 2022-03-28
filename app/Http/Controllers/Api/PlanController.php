@@ -48,6 +48,23 @@ class PlanController extends Controller
     {
         try {
 
+            $check_duplicate = Plan::where('user_id', auth('api')->user()->id)
+                                    ->where('title', $request->title)
+                                    ->where('origin', $request->origin)
+                                    ->where('destination', $request->destination)
+                                    ->where('type', $request->type)
+                                    ->where('start_date', $request->start_date)
+                                    ->where('end_date', $request->end_date)->exists();
+
+            if ($check_duplicate) {
+
+                return response()->json([
+                    'success' => false,
+                    'message' => 'input data can not be same with the existing. please make a new one',
+                ], 422);
+
+            }
+
             $new_plan = new Plan;
 
             $new_plan->user_id = auth('api')->user()->id;
@@ -88,7 +105,8 @@ class PlanController extends Controller
             if ($plan_detail === null) {
                 return response()->json([
                     'success' => true,
-                    'message' => 'plan detail not found'
+                    'message' => 'plan detail not found',
+                    'data' => array(),
                 ], 200);
             }
 
@@ -115,6 +133,23 @@ class PlanController extends Controller
     public function update(PlanRequest $request, $id)
     {
         try {
+
+            $check_duplicate = Plan::where('user_id', auth('api')->user()->id)
+                                    ->where('title', $request->title)
+                                    ->where('origin', $request->origin)
+                                    ->where('destination', $request->destination)
+                                    ->where('type', $request->type)
+                                    ->where('start_date', $request->start_date)
+                                    ->where('end_date', $request->end_date)->exists();
+
+            if ($check_duplicate) {
+
+                return response()->json([
+                    'success' => false,
+                    'message' => 'update data can not be same with the existing. please update with new data',
+                ], 422);
+
+            }
 
             $update_plan = Plan::whereId($id)->whereUserId(auth('api')->user()->id)->first();
 
