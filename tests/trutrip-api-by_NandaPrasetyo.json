@@ -31,15 +31,10 @@
 					]
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/auth/register",
-					"protocol": "http",
+					"raw": "{{trutrip_domain}}/api/auth/register",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{trutrip_domain}}"
 					],
-					"port": "8000",
 					"path": [
 						"api",
 						"auth",
@@ -70,15 +65,10 @@
 					]
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/auth/login",
-					"protocol": "http",
+					"raw": "{{trutrip_domain}}/api/auth/login",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{trutrip_domain}}"
 					],
-					"port": "8000",
 					"path": [
 						"api",
 						"auth",
@@ -104,15 +94,10 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/auth/logout",
-					"protocol": "http",
+					"raw": "{{trutrip_domain}}/api/auth/logout",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{trutrip_domain}}"
 					],
-					"port": "8000",
 					"path": [
 						"api",
 						"auth",
@@ -152,15 +137,10 @@
 					"urlencoded": []
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/user/plan",
-					"protocol": "http",
+					"raw": "{{trutrip_domain}}/api/user/plan",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{trutrip_domain}}"
 					],
-					"port": "8000",
 					"path": [
 						"api",
 						"user",
@@ -186,15 +166,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/user/plan/1",
-					"protocol": "http",
+					"raw": "{{trutrip_domain}}/api/user/plan/1",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{trutrip_domain}}"
 					],
-					"port": "8000",
 					"path": [
 						"api",
 						"user",
@@ -267,15 +242,10 @@
 					]
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/user/plan",
-					"protocol": "http",
+					"raw": "{{trutrip_domain}}/api/user/plan",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{trutrip_domain}}"
 					],
-					"port": "8000",
 					"path": [
 						"api",
 						"user",
@@ -347,15 +317,10 @@
 					]
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/user/plan/1",
-					"protocol": "http",
+					"raw": "{{trutrip_domain}}/api/user/plan/1",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{trutrip_domain}}"
 					],
-					"port": "8000",
 					"path": [
 						"api",
 						"user",
@@ -382,15 +347,10 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/user/plan/1",
-					"protocol": "http",
+					"raw": "{{trutrip_domain}}/api/user/plan/1",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{trutrip_domain}}"
 					],
-					"port": "8000",
 					"path": [
 						"api",
 						"user",

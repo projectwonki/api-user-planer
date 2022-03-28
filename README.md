@@ -33,7 +33,7 @@ if you want to test this API in your local. please follow these steps :
 7. run php artisan jwt:secret
 8. done
 
-I provide Postman Collection that you can find at path folder /test.
+I provide Postman Collection that you can find at path folder /tests.
 
 I also provide Public IP URL (i deployed this API in my public VPS). So, you can check and test it with postman collection without testing in your local. you just only change {{trutrip_domain}} at every endpoints with this : <br />
 
@@ -42,8 +42,8 @@ for example : http://103.174.115.179/index.php/api/auth/register <br />
 
 or, you can register the Public IP URL at Postman Global Environment using this setup : <br />
 VARIABLE: {trutrip_domain}} <br />
-INITIAL VALUE: 103.174.115.179/index.php <br />
-CURRENT VALUE: 103.174.115.179/index.php <br />
+INITIAL VALUE: http://103.174.115.179/index.php <br />
+CURRENT VALUE: http://103.174.115.179/index.php <br />
 
 before test, please make sure the Public IP URL registered in Global Environment at Postman.
 
